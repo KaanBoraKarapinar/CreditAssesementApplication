@@ -22,11 +22,32 @@ public class CreditmanagementApplication {
 	CommandLineRunner commandLineRunner(CreditApplicationService creditApplicationService,ApplicantService applicantService, CreditAssesementService assesementService){
 
 		return args -> {
-			Applicant applicant = applicantService.createApplicant("Kaan Bora Karapinar2",true);
+			/*Applicant applicant = applicantService.createApplicant("Kaan Bora 3" );
 
 
-			CreditApplication application = creditApplicationService.createApplication(applicant,new BigDecimal(701));
+			CreditApplication application = creditApplicationService.createApplication(applicant,703);
 			assesementService.startProcess(application);
+
+			System.out.println(applicant.toString());
+			System.out.println(application.toString());
+
+			Applicant applicant1 = applicantService.createApplicant("Kaan Bora 4" );
+
+
+			CreditApplication application1 = creditApplicationService.createApplication(applicant1,1703);
+			assesementService.startProcess(application1);
+
+			System.out.println(applicant1.toString());
+			System.out.println(application1.toString());
+
+			Applicant applicant2 = applicantService.createApplicant("Kaan Bora 5" );
+
+
+			CreditApplication application2 = creditApplicationService.createApplication(applicant2,303);
+			assesementService.startProcess(application2);
+
+			System.out.println(applicant2.toString());
+			System.out.println(application2.toString());*/
 		};
 
 

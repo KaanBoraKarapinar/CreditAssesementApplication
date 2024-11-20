@@ -21,9 +21,10 @@ public class CreditApplicationService {
 
     }
 
-    public CreditApplication createApplication(Applicant applicant, BigDecimal creditAmount){
+    public CreditApplication createApplication(Applicant applicant, Long creditAmount, String redirectingMarketplace){
 
-        CreditApplication creditApplication = new CreditApplication(applicant, creditAmount, Status.ACTIVE);
+        CreditApplication creditApplication = new CreditApplication(applicant, creditAmount, Status.ACTIVE, redirectingMarketplace);
+        applicant.getApplications().add(creditApplication);
         return creditApplicationRepository.save(creditApplication);
 
     }
@@ -33,14 +34,14 @@ public class CreditApplicationService {
     public void ApproveCreditApplicationById(Long applicationId){
 
         CreditApplication application = creditApplicationRepository.findById(applicationId)
-                .orElseThrow(() -> new RuntimeException("No applicantion found"));
+                .orElseThrow(() -> new RuntimeException("No application found"));
 
         application.setStatus(Status.APPROVED);
     }
 
     public void RejectCreditApplicationById(Long applicationId){
         CreditApplication application = creditApplicationRepository.findById(applicationId)
-                .orElseThrow(() -> new RuntimeException("No applicantion found"));
+                .orElseThrow(() -> new RuntimeException("No application found"));
         application.setStatus(Status.REJECTED);
     }
 

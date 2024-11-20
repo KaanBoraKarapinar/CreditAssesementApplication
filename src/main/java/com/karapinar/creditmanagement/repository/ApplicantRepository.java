@@ -16,4 +16,9 @@ public interface ApplicantRepository extends JpaRepository<Applicant,Long> {
     // Search by Parts of Name
     List<Applicant> findByFullnameContaining(String partialName);
 
+    // Search by PassportNr
+    Optional<Applicant> findByPassportNumber(String PassportNumber);
+
+    boolean existsByPassportNumber(String PassportNumber);
+
 }

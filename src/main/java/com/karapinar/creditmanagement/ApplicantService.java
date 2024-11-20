@@ -6,7 +6,6 @@ import com.karapinar.creditmanagement.repository.ApplicantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -27,15 +26,25 @@ public class ApplicantService {
                 .orElseThrow(() -> new RuntimeException("Applicant not found with fullname: " + fullName));
     }
 
+    public Applicant getApplicantBypassportNumber(String passportNumber){
+
+        return applicantRepository.findByPassportNumber(passportNumber)
+                .orElseThrow(() -> new RuntimeException("Applicant not found with fullname: " + passportNumber));
+    }
+
+    public boolean existsByPassportNumber(String passportNumber){
+        return applicantRepository.existsByPassportNumber(passportNumber);
+    }
+
     public List<Applicant> searchApplicantsByName(String name){
 
         return applicantRepository.findByFullnameContaining(name);
 
     }
 
-    public Applicant createApplicant(String fullname, boolean isBankCustomer) {
+    public Applicant createApplicant(String fullname,String passportNumber) {
 
-        Applicant applicant = new Applicant(fullname, isBankCustomer);
+        Applicant applicant = new Applicant(fullname,passportNumber);
 
 
         return applicantRepository.save(applicant);
@@ -54,7 +63,6 @@ public class ApplicantService {
         Applicant applicant = applicantRepository.findById(applicantId).orElseThrow(() -> new RuntimeException("No such applicant") );
         return applicant.getApplications();
     }
-
 
 
 
